@@ -1,7 +1,6 @@
 # Reen Starter Theme
 
-- Reen version: 1.0
-- Sage version: 8.1.0
+Reen version: 1.0
 
 ## Requirements
 
