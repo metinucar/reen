@@ -88,6 +88,9 @@ If your local develoment URL looks like `http://localhost:8888/project-name/` yo
 ...
 ```
 
+## Sycn with production
+[Sublime FTP](http://wbond.net/sublime_packages/sftp) package with the config file, `sftp-config.json`, can be used for file synchronization between development and remote server.
+
 ## [Sage](https://github.com/roots/sage)
 Sage documentation is available at [https://roots.io/sage/docs/](https://roots.io/sage/docs/).
 
