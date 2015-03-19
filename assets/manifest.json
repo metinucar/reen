@@ -25,6 +25,6 @@
     }
   },
   "config": {
-    "devUrl": "http://localhost:8888/reen/"
+    "devUrl": "http://localhost:8888/reen-dev/"
   }
 }
