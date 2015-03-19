@@ -8,11 +8,14 @@
   "private": true,
   "dependencies": {
     "modernizr": "2.8.2",
-    "jquery": "1.11.2"
+    "jquery": "1.11.2",
+    "bourbon": "~4.2.1",
+    "neat": "~1.7.2"
   },
   "overrides": {
     "modernizr": {
       "main": "./modernizr.js"
     }
-  }
+  },
+  "devDependencies": {}
 }
