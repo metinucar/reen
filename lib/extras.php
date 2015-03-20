@@ -21,6 +21,7 @@
  * Add defer attribute to scripts
  * Disable automatic loading of Contact Form 7 assets
  * Order Custom Post Types by date
+ * Removing Jetpack CSS
  * Hide email from Spam Bots using a shortcode
  *
  */
