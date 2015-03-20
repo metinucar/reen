@@ -21,7 +21,7 @@
   AddType image/png .png
   AddType text/css .css
   AddType image/svg+xml .svg
-  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript image/svg+xml x-font/otf x-font/ttf x-font/eot x-font/woff image/x-icon image/png
+  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript image/svg+xml x-font/otf x-font/ttf x-font/eot x-font/woff x-font/woff2 image/x-icon image/png
 </ifmodule>
 # END GZIP
 
