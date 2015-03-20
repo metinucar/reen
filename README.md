@@ -1,7 +1,5 @@
 # Reen Starter Theme
 
-Reen version: 1.0
-
 ## Requirements
 
 | Prerequisite    | How to check | How to install
@@ -71,15 +69,8 @@ Edit `lib/init.php` to setup navigation menus, post thumbnail sizes, post format
 
 To use BrowserSync during `gulp watch` you need update `devUrl` at the bottom of `assets/manifest.json` to reflect your local development hostname.
 
-For example, if your local development URL is `http://project-name.dev` you would update the file to read:
-```json
-...
-  "config": {
-    "devUrl": "http://project-name.dev"
-  }
-...
-```
-If your local develoment URL looks like `http://localhost:8888/project-name/` you would update the file to read:
+For example, if your local develoment URL looks like `http://localhost:8888/project-name/` you would update the file to read:
+
 ```json
 ...
   "config": {
