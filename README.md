@@ -3,6 +3,7 @@
 - [Extras](lib/extras.php) - A collection functions and filters that are essential
 - [Snippets](snippets.md) - A collection of code snippets that might be useful
 - [Plugins](plugins.md) - A collection of plugins that are recommended
+- [.htaccess example](htaccess-example.md) - A `.htaccess`example
 
 ## Requirements
 

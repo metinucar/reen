@@ -1,0 +1,137 @@
+# RewriteEngine On
+
+# Libwww-perl Access Fix
+# RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
+# RewriteRule .* – [F,L]
+
+# Redirect www to non-www
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# BEGIN GZIP
+<ifmodule mod_deflate.c>
+  AddType x-font/otf .otf
+  AddType x-font/ttf .ttf
+  AddType x-font/eot .eot
+  AddType x-font/woff .woff
+  AddType x-font/woff2 .woff2
+  AddType image/x-icon .ico
+  AddType image/png .png
+  AddType text/css .css
+  AddType image/svg+xml .svg
+  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript image/svg+xml x-font/otf x-font/ttf x-font/eot x-font/woff image/x-icon image/png
+</ifmodule>
+# END GZIP
+
+# BEGIN Cache-Control Headers
+<ifModule mod_headers.c>
+    <filesMatch "\.(ico|jpe?g|png|gif|swf)$">
+        Header set Cache-Control "public"
+    </filesMatch>
+    <filesMatch "\.(css)$">
+        Header set Cache-Control "public"
+    </filesMatch>
+    <filesMatch "\.(js)$">
+        Header set Cache-Control "private"
+    </filesMatch>
+    <filesMatch "\.(x?html?|php)$">
+        Header set Cache-Control "private, must-revalidate"
+    </filesMatch>
+</ifModule>
+# END Cache-Control Headers
+
+# Proper MIME Types
+<IfModule mod_mime.c>
+  # Audio
+    AddType audio/mp4                                   m4a f4a f4b
+    AddType audio/ogg                                   oga ogg
+  # JavaScript
+    AddType application/javascript                      js jsonp
+    AddType application/json                            json
+  # Video
+    AddType video/mp4                                   mp4 m4v f4v f4p
+    AddType video/ogg                                   ogv
+    AddType video/webm                                  webm
+    AddType video/x-flv                                 flv
+  # Web fonts
+    AddType application/font-woff                       woff
+    AddType application/font-woff2                      woff2
+    AddType application/vnd.ms-fontobject               eot
+    AddType application/x-font-ttf                      ttc ttf
+    AddType font/opentype                               otf
+    AddType image/svg+xml                               svg svgz
+    AddEncoding gzip                                    svgz
+  # Other
+    AddType application/octet-stream                    safariextz
+    AddType application/x-chrome-extension              crx
+    AddType application/x-opera-extension               oex
+    AddType application/x-shockwave-flash               swf
+    AddType application/x-web-app-manifest+json         webapp
+    AddType application/x-xpinstall                     xpi
+    AddType application/xml                             atom rdf rss xml
+    AddType image/webp                                  webp
+    AddType image/x-icon                                ico
+    AddType text/cache-manifest                         appcache manifest
+    AddType text/vtt                                    vtt
+    AddType text/x-component                            htc
+    AddType text/x-vcard                                vcf
+</IfModule>
+
+# Proper Expires
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresDefault                                      "access plus 1 month"
+  # CSS
+    ExpiresByType text/css                              "access plus 1 year"
+  # Data interchange
+    ExpiresByType application/json                      "access plus 0 seconds"
+    ExpiresByType application/xml                       "access plus 0 seconds"
+    ExpiresByType text/xml                              "access plus 0 seconds"
+  # Favicon (cannot be renamed!)
+    ExpiresByType image/x-icon                          "access plus 1 week"
+  # HTML components (HTCs)
+    ExpiresByType text/x-component                      "access plus 1 month"
+  # HTML
+    ExpiresByType text/html                             "access plus 0 seconds"
+  # JavaScript
+    ExpiresByType application/javascript                "access plus 1 year"
+  # Manifest files
+    ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
+    ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+  # Media
+    ExpiresByType audio/ogg                             "access plus 1 month"
+    ExpiresByType image/gif                             "access plus 1 month"
+    ExpiresByType image/jpeg                            "access plus 1 month"
+    ExpiresByType image/png                             "access plus 1 month"
+    ExpiresByType video/mp4                             "access plus 1 month"
+    ExpiresByType video/ogg                             "access plus 1 month"
+    ExpiresByType video/webm                            "access plus 1 month"
+  # Web feeds
+    ExpiresByType application/atom+xml                  "access plus 1 hour"
+    ExpiresByType application/rss+xml                   "access plus 1 hour"
+  # Web fonts
+    ExpiresByType application/font-woff                 "access plus 1 month"
+    ExpiresByType application/font-woff2                "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+    ExpiresByType application/x-font-ttf                "access plus 1 month"
+    ExpiresByType font/opentype                         "access plus 1 month"
+    ExpiresByType image/svg+xml                         "access plus 1 month"
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+# Memory Limit
+# php_value memory_limit 256M
+# php_value upload_max_filesize 16M
