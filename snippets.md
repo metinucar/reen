@@ -2,6 +2,7 @@
 A collection of code snippets that might be useful
 
 ## Table of contents
+- [Controlling Menu Items on Backend](#controlling-menu-items-on-backend)
 - [Turn on WordPress Error Reporting](#turn-on-wordpress-error-reporting)
 - [“Edit This” Button on Posts and Pages](#edit-this-button-on-posts-and-pages)
 - [Add Category Name to body_class](#add-category-name-to-body_class)
@@ -12,7 +13,33 @@ A collection of code snippets that might be useful
 - [Insert Images with Figure/Figcaption](#insert-images-with-figurefigcaption)
 - [Make Archives.php Include Custom Post Types](#make-archivesphp-include-custom-post-types)
 - [Remove Private/Protected from Post Titles](#remove-privateprotected-from-post-titles)
+- [Simple maintenance mode](#simple-maintenance-mode)
 - [Year Shortcode](#year-shortcode)
+
+
+## Controlling Menu Items on Backend
+Example: http://wpsnippy.com/remove-top-level-wordpress-dashboard-menu/
+
+```php
+if ( ! current_user_can( 'manage_options' ) ) {
+    add_action( 'admin_menu', 'admin_menu_example' );
+}
+
+function admin_menu_example() {
+  remove_menu_page( 'index.php' );                  //Dashboard
+  remove_menu_page( 'edit.php' );                   //Posts
+  remove_menu_page( 'upload.php' );                 //Media
+  remove_menu_page( 'edit.php?post_type=page' );    //Pages
+  remove_menu_page( 'edit-comments.php' );          //Comments
+  remove_menu_page( 'themes.php' );                 //Appearance
+  remove_menu_page( 'plugins.php' );                //Plugins
+  remove_menu_page( 'users.php' );                  //Users
+  remove_menu_page( 'tools.php' );                  //Tools
+  remove_menu_page( 'options-general.php' );        //Settings
+
+}
+```
+
 
 ## Turn on WordPress Error Reporting
 Comment out the top line there, and add the rest to your `wp-config.php file to get more detailed error reporting from your WordPress site. Definitely don't do this live, do it for local development and testing.
@@ -26,10 +53,12 @@ define('WP_DEBUG_DISPLAY', false);
 @ini_set('display_errors', 0);
 ```
 
+
 ## “Edit This” Button on Posts and Pages
 ```php
 <?php edit_post_link(__('Edit This')); ?>
 ```
+
 
 ## Add Category Name to body_class
 ```php
@@ -46,6 +75,7 @@ function add_category_to_single($classes, $class) {
   return $classes;
 }
 ```
+
 
 ## Admin Panel Link Only For Admins
 ```php
@@ -160,6 +190,18 @@ function the_title_trim($title) {
   return $title;
 }
 add_filter('the_title', 'the_title_trim');
+```
+
+## Simple maintenance mode
+Example: http://wp-snippets.com/articles/7-code-snippets-you-should-use-on-every-site/
+
+```php
+add_action( 'get_header', 'get_header_example' );
+function get_header_example() {
+  if ( ! current_user_can( 'activate_plugins' ) ) {
+    wp_die( 'The website will be back soon.' );
+  }
+}
 ```
 
 ## Year Shortcode
