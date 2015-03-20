@@ -292,7 +292,8 @@ add_filter( 'wpcf7_load_css', __NAMESPACE__ . '\\__return_false' );
  * Source: https://css-tricks.com/snippets/wordpress/removing-jetpack-css/
  */
 // First, make sure Jetpack doesn't concatenate all its CSS
-add_filter( 'jetpack_implode_frontend_css', '__return_false' );
+add_filter( 'jetpack_implode_frontend_css', __NAMESPACE__ . '\\__return_false' );
+
 // Then, remove each CSS file, one at a time
 function jeherve_remove_all_jp_css() {
   wp_deregister_style( 'AtD_style' ); // After the Deadline
@@ -321,7 +322,7 @@ function jeherve_remove_all_jp_css() {
   wp_deregister_style( 'widget-grid-and-list' ); // Top Posts widget
   wp_deregister_style( 'jetpack-widgets' ); // Widgets
 }
-add_action('wp_print_styles', 'jeherve_remove_all_jp_css' );
+add_action('wp_print_styles', __NAMESPACE__ . '\\jeherve_remove_all_jp_css' );
 
 
 /**
