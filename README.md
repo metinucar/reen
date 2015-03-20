@@ -1,5 +1,9 @@
 # Reen Starter Theme
 
+- [Extras](lib/extras.php) - A collection functions and filters that are essential
+- [Snippets](snippets.md) - A collection of code snippets that might be useful
+- [Plugins](plugins.md) - A collection of plugins that are recommended
+
 ## Requirements
 
 | Prerequisite    | How to check | How to install
