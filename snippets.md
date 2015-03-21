@@ -2,6 +2,8 @@
 A collection of code snippets that might be useful
 
 ## Table of contents
+- [Display Custom Post Types in Search Results](#display-custom-post-types-in-search-results)
+- [Show a Message on Admin View](#show-a-message-on-admin-view)
 - [Controlling Menu Items on Backend](#controlling-menu-items-on-backend)
 - [Turn on WordPress Error Reporting](#turn-on-wordpress-error-reporting)
 - [“Edit This” Button on Posts and Pages](#edit-this-button-on-posts-and-pages)
@@ -15,6 +17,34 @@ A collection of code snippets that might be useful
 - [Remove Private/Protected from Post Titles](#remove-privateprotected-from-post-titles)
 - [Simple maintenance mode](#simple-maintenance-mode)
 - [Year Shortcode](#year-shortcode)
+
+
+## Display Custom Post Types in Search Results
+Example: http://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts
+
+```php
+add_action( 'pre_get_posts', 'pre_get_posts_example' );
+function pre_get_posts_example( $query ) {
+  if ( ! is_admin() && $query->is_main_query() ) {
+    if ( $query->is_search ) {
+      $query->set( 'post_type', array( 'post', 'custom-post-type' ) );
+    }
+  }
+}
+```
+
+
+## Show a Message on Admin View
+Example: http://wpsnippy.com/show-notification-message-wordpress-admin-pages/
+
+```php
+add_action( 'admin_notices', 'admin_notices_example' );
+function admin_notices_example() {
+  echo '<div class="error">
+    <p>We are performing website maintenance. Please don\'t make any changes in your posts until further notice!</p>
+  </div>';
+}
+```
 
 
 ## Controlling Menu Items on Backend
