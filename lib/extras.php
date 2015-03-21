@@ -22,6 +22,7 @@
  * Disable automatic loading of Contact Form 7 assets
  * Order Custom Post Types by date
  * Removing Jetpack CSS
+ * Auto redirect users after logout
  * Hide email from Spam Bots using a shortcode
  *
  */
@@ -323,6 +324,18 @@ function jeherve_remove_all_jp_css() {
   wp_deregister_style( 'jetpack-widgets' ); // Widgets
 }
 add_action('wp_print_styles', __NAMESPACE__ . '\\jeherve_remove_all_jp_css' );
+
+
+/**
+ * Auto redirect users after logout
+ * Source: https://css-tricks.com/snippets/wordpress/removing-jetpack-css/
+ */
+function wp_logout_reen() {
+  wp_redirect( home_url() );
+  exit();
+}
+add_action('wp_logout', __NAMESPACE__ . '\\wp_logout_reen');
+
 
 
 /**
