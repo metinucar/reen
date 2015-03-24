@@ -72,7 +72,7 @@ Edit `lib/init.php` to setup navigation menus, post thumbnail sizes, post format
 
 ## Using BrowserSync
 
-To use BrowserSync during `gulp watch` you need update `devUrl` at the bottom of `assets/manifest.json` to reflect your local development hostname.
+To use BrowserSync during `gulp watch` you need to update `devUrl` at the bottom of `assets/manifest.json` to reflect your local development hostname.
 
 For example, if your local develoment URL looks like `http://localhost:8888/project-name/` you would update the file to read:
 
