@@ -3,6 +3,7 @@ A collection of code snippets that might be useful
 
 ## Table of contents
 - [Display Custom Post Types in Search Results](#display-custom-post-types-in-search-results)
+- [Display Child Pages of a Parent Page](#display-child-pages-of-a-parent-page)
 - [Show a Message on Admin View](#show-a-message-on-admin-view)
 - [Controlling Menu Items on Backend](#controlling-menu-items-on-backend)
 - [Turn on WordPress Error Reporting](#turn-on-wordpress-error-reporting)
@@ -32,6 +33,28 @@ function pre_get_posts_example( $query ) {
   }
 }
 ```
+
+
+## Display Child Pages of a Parent Page
+Source: http://stackoverflow.com/a/23117529
+
+```php
+  <?php
+  if ($post->post_parent) {
+    $ancestors = get_post_ancestors($post->ID);
+    $parent = $ancestors[count($ancestors) - 1];
+  } else {
+    $parent = $post->ID;
+  }
+
+  $children = wp_list_pages("title_li=&child_of=" . $parent . "&echo=0");
+  if ($children) { ?>
+    <ul class="subnav">
+      <?php echo $children; ?>
+    </ul>
+  <?php } ?>
+```
+
 
 
 ## Show a Message on Admin View
