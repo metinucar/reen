@@ -6,6 +6,7 @@ var browserSync = require('browser-sync');
 var gulp        = require('gulp');
 var lazypipe    = require('lazypipe');
 var merge       = require('merge-stream');
+var runSequence = require('run-sequence');
 
 // See https://github.com/austinpray/asset-builder
 var manifest = require('asset-builder')('./assets/manifest.json');
@@ -80,14 +81,13 @@ var cssTasks = function(filename) {
         }));
       })
       .pipe($.concat, filename)
-      .pipe($.pleeease, {
-        autoprefixer: {
-          browsers: [
-            'last 2 versions', 'ie 8', 'ie 9', 'android 2.3', 'android 4',
-            'opera 12'
-          ]
-        }
+      .pipe($.autoprefixer, {
+        browsers: [
+          'last 2 versions', 'ie 8', 'ie 9', 'android 2.3', 'android 4',
+          'opera 12'
+        ]
       })
+      .pipe($.minifyCss)
     .pipe(function() {
       return $.if(enabled.rev, $.rev());
     })
@@ -236,7 +236,12 @@ gulp.task('watch', function() {
 // ### Build
 // `gulp build` - Run all the build tasks but don't clean up beforehand.
 // Generally you should be running `gulp` instead of `gulp build`.
-gulp.task('build', ['styles', 'scripts', 'fonts', 'images']);
+gulp.task('build', function(callback) {
+  runSequence('styles',
+              'scripts',
+              ['fonts', 'images'],
+              callback);
+});
 
 // ### Wiredep
 // `gulp wiredep` - Automatically inject Less and Sass Bower dependencies. See
