@@ -63,6 +63,7 @@ bower install // Install bower dependencies
 
 ### Configuration
 Edit `lib/config.php` to enable or disable theme features and to define a Google Analytics ID.
+
 Edit `lib/init.php` to setup navigation menus, post thumbnail sizes, post formats, and sidebars.
 
 ## gulp commands
