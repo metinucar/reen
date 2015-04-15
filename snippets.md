@@ -3,6 +3,7 @@ A collection of code snippets that might be useful
 
 ## Table of contents
 - [Display Custom Post Types in Search Results](#display-custom-post-types-in-search-results)
+- [Update URLs After Migrating to New Domain](#update-urls-after-migrating-to-new-domain)
 - [Display Child Pages of a Parent Page](#display-child-pages-of-a-parent-page)
 - [Show a Message on Admin View](#show-a-message-on-admin-view)
 - [Controlling Menu Items on Backend](#controlling-menu-items-on-backend)
@@ -32,6 +33,15 @@ function pre_get_posts_example( $query ) {
     }
   }
 }
+```
+
+
+## Update URLs After Migrating to New Domain
+```sql
+UPDATE wp_options SET option_value = replace(option_value, 'http://www.oldurl', 'http://www.newurl') WHERE option_name = 'home' OR option_name = 'siteurl';
+UPDATE wp_posts SET guid = replace(guid, 'http://www.oldurl','http://www.newurl');
+UPDATE wp_posts SET post_content = replace(post_content, 'http://www.oldurl', 'http://www.newurl');
+UPDATE wp_postmeta SET meta_value = replace(meta_value,'http://www.oldurl','http://www.newurl');
 ```
 
 
