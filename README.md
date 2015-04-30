@@ -1,4 +1,5 @@
 # Reen Starter Theme
+Reen is a WordPress starter theme based on HTML5 Boilerplate, gulp, Bower, and Sass, that will help you make better themes.
 
 - [Extras](lib/extras.php) - A collection functions and filters that are essential
 - [Snippets](snippets.md) - A collection of code snippets that might be useful
