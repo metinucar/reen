@@ -1,4 +1,6 @@
-### HEAD
+### 8.2.1: May 7th, 2015
+* Update BrowserSync ([#1457](https://github.com/roots/sage/issues/1457))
+* Bump dependencies ([#1448](https://github.com/roots/sage/issues/1448))
 * Allow revved files to resolve in development if they exist ([#1456](https://github.com/roots/sage/issues/1456))
 * Disable advanced minification features to fix incorrect file path in compiled CSS ([#1452](https://github.com/roots/sage/issues/1452))
 * Fix Glyphicon font path ([#1455](https://github.com/roots/sage/issues/1455))
