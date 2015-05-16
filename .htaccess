@@ -1,8 +1,8 @@
 # RewriteEngine On
 
 # Libwww-perl Access Fix
-RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
-RewriteRule .* – [F,L]
+# RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
+# RewriteRule .* – [F,L]
 
 # Redirect www to non-www
 # RewriteEngine On
@@ -147,8 +147,27 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
-
 # END WordPress
+
+# Protect wp-login
+<files wp-login.php=””>
+AuthUserFile ~/.htpasswd
+AuthName “Private access”
+AuthType Basic
+require user mysecretuser
+</files>
+
+# Protect agains URL based exploits
+RedirectMatch 403 [
+
+# Protect .htaccess
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+# Disable directory listing
+Options -Indexes
 
 # Memory Limit
 # php_value memory_limit 256M
