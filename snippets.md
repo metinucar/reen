@@ -2,6 +2,7 @@
 A collection of code snippets that might be useful
 
 ## Table of contents
+- [Proper file and folder permissions](#proper-file-and-folder-permissions)
 - [Display Custom Post Types in Search Results](#display-custom-post-types-in-search-results)
 - [Update URLs After Migrating to New Domain](#update-urls-after-migrating-to-new-domain)
 - [Display Child Pages of a Parent Page](#display-child-pages-of-a-parent-page)
@@ -20,6 +21,18 @@ A collection of code snippets that might be useful
 - [Simple maintenance mode](#simple-maintenance-mode)
 - [Year Shortcode](#year-shortcode)
 
+## Proper file and folder permissions
+```bash
+# Files
+sudo find . -type f -exec chmod 644 {} +
+
+# Folders
+sudo find . -type d -exec chmod 755 {} +
+
+# wp-config.php, 640 or 644 permissions can also be used
+sudo chmod 600 wp-config.php
+
+```
 
 ## Display Custom Post Types in Search Results
 Example: http://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts
