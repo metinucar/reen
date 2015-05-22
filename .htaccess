@@ -12,10 +12,10 @@
 
 # Turn eTags Off
 # https://github.com/ucarmetin/toolbox/blob/master/lists/awesome-htaccess.md#turn-etags-off
-<IfModule mod_headers.c>
-    Header unset ETag
-</IfModule>
-FileETag None
+# <IfModule mod_headers.c>
+#     Header unset ETag
+# </IfModule>
+# FileETag None
 
 # BEGIN GZIP
 <ifmodule mod_deflate.c>
@@ -150,18 +150,24 @@ RewriteRule . /index.php [L]
 # END WordPress
 
 # Protect wp-login
-<files wp-login.php=””>
-AuthUserFile ~/.htpasswd
-AuthName “Private access”
-AuthType Basic
-require user mysecretuser
-</files>
+# <files wp-login.php=””>
+# AuthUserFile ~/.htpasswd
+# AuthName “Private access”
+# AuthType Basic
+# require user mysecretuser
+# </files>
 
 # Protect agains URL based exploits
-RedirectMatch 403 [
+# RedirectMatch 403 [
 
 # Protect .htaccess
 <files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+# Protect wp-config.php
+<files wp-config.php>
 order allow,deny
 deny from all
 </files>
