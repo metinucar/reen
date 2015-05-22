@@ -23,11 +23,11 @@ A collection of code snippets that might be useful
 
 ## Proper file and folder permissions
 ```bash
-# Files
-sudo find . -type f -exec chmod 644 {} +
+sudo find . -type f -exec chmod 664 {} + # Files
+sudo find . -type d -exec chmod 775 {} + # Folders
 
-# Folders
-sudo find . -type d -exec chmod 755 {} +
+# Don't forget to disable directory listing in .htaccess.
+# Options -Indexes
 
 # wp-config.php, 640 or 644 permissions can also be used
 sudo chmod 600 wp-config.php
