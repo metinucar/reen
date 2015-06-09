@@ -19,6 +19,7 @@ A collection of code snippets that might be useful
 - [Make Archives.php Include Custom Post Types](#make-archivesphp-include-custom-post-types)
 - [Remove Private/Protected from Post Titles](#remove-privateprotected-from-post-titles)
 - [Simple maintenance mode](#simple-maintenance-mode)
+- [Fix PHP Code Injection Hack](#fix-php-code-injection-hack)
 - [Year Shortcode](#year-shortcode)
 
 ## Proper file and folder permissions
@@ -278,6 +279,12 @@ function get_header_example() {
     wp_die( 'The website will be back soon.' );
   }
 }
+```
+
+## Fix PHP Code Injection Hack
+It basically finds all files with a PHP file extension, and then replacing everything on the first line with `<?php`
+```bash
+find . -name '*.php' | sed -i -e '1s/.*/<\?php/' *.php
 ```
 
 ## Year Shortcode
