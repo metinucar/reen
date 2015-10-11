@@ -33,7 +33,7 @@ cd ~/Applications/MAMP/htdocs
 ln -s /path/to/new-wordpress-project symlink-name
 ```
 
-## Install Theme
+## Theme Installation
 
 ### Specify environment
 ```bash
