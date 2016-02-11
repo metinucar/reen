@@ -24,8 +24,8 @@ A collection of code snippets that might be useful
 
 ## Proper file and folder permissions
 ```bash
-sudo find . -type f -exec chmod 664 {} + # Files
-sudo find . -type d -exec chmod 775 {} + # Folders
+sudo find . -type f -exec chmod 644 {} + # Files
+sudo find . -type d -exec chmod 755 {} + # Folders
 
 # Don't forget to disable directory listing in .htaccess.
 # Options -Indexes
