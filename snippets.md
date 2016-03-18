@@ -3,14 +3,18 @@ A collection of code snippets that might be useful
 
 ## Table of contents
 - [Proper file and folder permissions](#proper-file-and-folder-permissions)
+- [Don't forget to disable directory listing in .htaccess.](#dont-forget-to-disable-directory-listing-in-htaccess)
+- [Options -Indexes](#options-indexes)
+- [wp-config.php, 640 or 644 permissions can also be used](#wp-configphp-640-or-644-permissions-can-also-be-used)
 - [Display Custom Post Types in Search Results](#display-custom-post-types-in-search-results)
+- [Add a new user to database via SQL-query](#add-a-new-user-to-database-via-sql-query)
 - [Update URLs After Migrating to New Domain](#update-urls-after-migrating-to-new-domain)
 - [Display Child Pages of a Parent Page](#display-child-pages-of-a-parent-page)
 - [Show a Message on Admin View](#show-a-message-on-admin-view)
 - [Controlling Menu Items on Backend](#controlling-menu-items-on-backend)
 - [Turn on WordPress Error Reporting](#turn-on-wordpress-error-reporting)
 - [“Edit This” Button on Posts and Pages](#edit-this-button-on-posts-and-pages)
-- [Add Category Name to body_class](#add-category-name-to-body_class)
+- [Add Category Name to body_class](#add-category-name-to-bodyclass)
 - [Admin Panel Link Only For Admins](#admin-panel-link-only-for-admins)
 - [Custom Database Error Page](#custom-database-error-page)
 - [Disable Automatic Formatting](#disable-automatic-formatting)
@@ -18,6 +22,11 @@ A collection of code snippets that might be useful
 - [Insert Images with Figure/Figcaption](#insert-images-with-figurefigcaption)
 - [Make Archives.php Include Custom Post Types](#make-archivesphp-include-custom-post-types)
 - [Remove Private/Protected from Post Titles](#remove-privateprotected-from-post-titles)
+- [Simple maintenance mode](#simple-maintenance-mode)
+- [Fix PHP Code Injection Hack](#fix-php-code-injection-hack)
+- [Year Shortcode](#year-shortcode)
+
+<!-- /TOC -->m Post Titles](#remove-privateprotected-from-post-titles)
 - [Simple maintenance mode](#simple-maintenance-mode)
 - [Fix PHP Code Injection Hack](#fix-php-code-injection-hack)
 - [Year Shortcode](#year-shortcode)
@@ -47,6 +56,13 @@ function pre_get_posts_example( $query ) {
     }
   }
 }
+```
+
+## Add a new user to database via SQL-query
+```sql
+INSERT INTO `database_name`.`wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES ('1', 'test', MD5('test'), 'Standout', 'example@test.se', 'http://test.se/', '2016-01-01 00:00:00', '', '0', 'Standout');
+INSERT INTO `database_name`.`wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, '1', 'wp_capabilities', 'a:1:{s:13:"administrator";s:1:"1";}');
+INSERT INTO `database_name`.`wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, '1', 'wp_user_level', '10');
 ```
 
 
